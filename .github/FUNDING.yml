@@ -1,13 +1,33 @@
-# These are supported funding model platforms
+name: Build and Deploy Jekyll Site
 
-github: # Replace with up to 4 GitHub Sponsors-enabled usernames e.g., [user1, user2]
-patreon: # Replace with a single Patreon username
-open_collective: # Replace with a single Open Collective username
-ko_fi: murraco # Replace with a single Ko-fi username
-tidelift: # Replace with a single Tidelift platform-name/package-name e.g., npm/babel
-community_bridge: # Replace with a single Community Bridge project-name e.g., cloud-foundry
-liberapay: # Replace with a single Liberapay username
-issuehunt: # Replace with a single IssueHunt username
-otechie: # Replace with a single Otechie username
-lfx_crowdfunding: # Replace with a single LFX Crowdfunding project-name e.g., cloud-foundry
-custom: # Replace with up to 4 custom sponsorship URLs e.g., ['link1', 'link2']
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.0'  # 确保使用兼容的 Ruby 版本
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install  # 运行 bundle install
+
+      - name: Build the Jekyll site
+        run: bundle exec jekyll build  # 构建 Jekyll 站点
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./_site  # Jekyll 构建输出的目录
