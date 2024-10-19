@@ -3,7 +3,7 @@ name: Build and Deploy Jekyll
 on:
   push:
     branches:
-      - master
+      - master  # 或其他你使用的分支
 
 jobs:
   build:
@@ -16,9 +16,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.0'  # 将版本改为 3.0
-          bundler-cache: true
-
+          ruby-version: '3.0'  # 使用 Ruby 3.0
 
       - name: Install Dependencies
         run: |
