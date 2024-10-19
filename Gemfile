@@ -1,10 +1,5 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-gem 'jekyll', '~> 3.8'
-gem 'jekyll-theme-minimal-resume', '~> 3.1.2'  # 更新为最新版本
-
-group :jekyll_plugins do
-  gem 'jekyll-paginate'
-  gem 'jekyll-sitemap'
-  gem 'jekyll-seo-tag'
-end
+gem "jekyll", "~> 4.2.0"  # 使用最新的 Jekyll 版本
+gem "jekyll-theme-minimal-resume", "~> 3.1.2"  # 指定主题的版本
+gem "github-pages", group: :jekyll_plugins  # GitHub Pages 插件组
