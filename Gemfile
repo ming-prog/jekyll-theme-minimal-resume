@@ -1,2 +1,3 @@
-source "https://rubygems.org"
-gem 'github-pages'
+source 'https://rubygems.org'
+gem 'jekyll', '~> 4.2.0'
+gem 'jekyll-theme-minimal-resume'
